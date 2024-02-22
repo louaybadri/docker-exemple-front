@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Result Display</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            background: #f7f7f7;
+            color: #333;
+            font-size: 24px;
+        }
+
+        /* Add more styles here for prettier view */
+    </style>
+</head>
+
+<body>
+    <div class="container" id="apiResult">
+        <!-- API result will be displayed here -->
+    </div>
+
+    <script>
+        async function fetchApiResult() {
+            try {
+                const response = await fetch('http://localhost:3000/');
+                const data = await response.text();
+                console.log('API result:', data);
+                document.getElementById('apiResult').innerText = data;
+            } catch (error) {
+                console.error('Error fetching API result:', error);
+                document.getElementById('apiResult').innerText = 'Failed to load API result.';
+            }
+        }
+
+        // Call the function when the window loads
+        window.onload = fetchApiResult;
+    </script>
+</body>
+
+</html>
